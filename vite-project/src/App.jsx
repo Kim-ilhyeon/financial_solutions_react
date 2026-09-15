@@ -1,120 +1,107 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import Hello from './components/Hello'
+import World from './components/World'
+import VideoCard from './components/VideoCard'
+import VideoList from './components/VideoList'
+
+const videoDatas = [
+  {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  },{
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }, {
+    sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+    title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+    channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+    channelName: "빵빵이의 일상",
+    views: "146.3만회",
+    date: "2시간 전",
+  }
+]
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {/* <Hello />
+      <World /> */}
+      {/* <VideoCard video={{
+          sumbnail: "https://i.ytimg.com/vi/PirdZt0s0TI/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCIlRN8TJ8s5vQ6xslGAuxc4W4k6g",
+          title: "빵빵이와 옥지의 반전드라마: 미래를 찍는 카메라",
+          channelLogo: "https://yt3.googleusercontent.com/wYRkjS6E0mMZ-np2jNwjVaCNzQMpxs1VkdQ_p25oe0aaSj0awd7f9xRUcrwI6rVOQE7kjZQ6l4A=s160-c-k-c0x00ffffff-no-rj",
+          channelName: "빵빵이의 일상",
+          views: "146.3만회",
+          date: "2시간 전",
+      }} count = {10}/> */}
+      <VideoList videos={videoDatas} />
     </>
   )
 }
