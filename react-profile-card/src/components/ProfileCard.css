@@ -1,0 +1,16 @@
+.profile-container {
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.profile-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
