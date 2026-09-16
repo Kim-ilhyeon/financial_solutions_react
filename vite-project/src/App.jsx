@@ -9,6 +9,8 @@ import LandingPage from './components/useState/LandingPage'
 import SignUp from './components/useState/SignUp'
 import UseRefTest from './components/useRef/UseRefTest'
 import UseRefScroll from './components/useRef/UseRefScroll'
+import UseMemoTest from './components/useMemo/UseMemoTest'
+import UseEffectTest from './components/useEffect/UseEffectTest'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,7 +22,9 @@ function App() {
       {/* <LandingPage /> */}
       {/* <SignUp /> */}
       {/* <UseRefTest /> */}
-      <UseRefScroll />
+      {/* <UseRefScroll /> */}
+      {/* <UseMemoTest /> */}
+      <UseEffectTest />
     </>
   )
 }
