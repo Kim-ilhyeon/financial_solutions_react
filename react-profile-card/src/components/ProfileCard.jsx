@@ -20,6 +20,11 @@ const ProfileCardLi = styled.li`
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   }
 `
+// 아래와 같이 이전 이미 디자인되어있는 것 기준으로 추가로 css를 원하는 경우 아래처럼 사용
+// const NewProfileCardLi = styled(ProfileCardLi)`
+//   css...
+// `
+
 const Online = styled.h3`
   color: green;
   font-weight: bold;
@@ -35,8 +40,8 @@ const ProfileCard = ({datas}) => {
     <>
       <div className='profile-container'>
           <ul className='profile-list'>
-              {datas.map((data, index) => (
-                  <ProfileCardLi key={index}>
+              {datas.map((data, id) => (
+                  <ProfileCardLi key={data.id}>
                     <h2>{data.name}</h2>
                     <h3>{data.age}세</h3>
                     {data.isOnline ? 
